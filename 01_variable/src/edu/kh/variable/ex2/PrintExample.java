@@ -1,5 +1,6 @@
 package edu.kh.variable.ex2;
 
+
 public class PrintExample {
 
 	public static void main(String[] args) {
@@ -42,7 +43,6 @@ public class PrintExample {
 		char ch = '가';
 		String str = "안녕하세요";
 		System.out.printf("%b / %c / %s \n",isTrue,ch,str);
-		
 		
 		
 		
