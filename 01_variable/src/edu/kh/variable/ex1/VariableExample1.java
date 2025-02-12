@@ -1,10 +1,11 @@
 package edu.kh.variable.ex1;
 
-// 집에서 공부 함
+
 public class VariableExample1 {
 	
 	public static void main(String[] args) {
-		// 뭐냐고 이거. 일단 수정했어요
+		int workspace =1;
+
 		System.out.println("미친");
 		System.out.println("반지름이 5인 원의 둘레는" + 2*3.141592*5);
 		System.out.println("반지름이 5인 원의 넓이는" + 3.141592*5*5);
@@ -12,6 +13,8 @@ public class VariableExample1 {
 		System.out.println("반지름이 5인 구의 겉넓이는" + 4* 3.141592*5*5);
 		int pi2=3;
 		System.out.println("-------------------------------------");
+		
+
 
 		double pi = 3.141592; // 원주율의 변수화
 		int r=5;
