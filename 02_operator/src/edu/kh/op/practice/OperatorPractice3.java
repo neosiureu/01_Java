@@ -3,6 +3,8 @@ package edu.kh.op.practice;
 import java.util.Scanner;
 
 public class OperatorPractice3 {
+	
+	
 	public void practice1  () {
 		Scanner in=new Scanner(System.in);
 		double price;
@@ -54,7 +56,6 @@ public class OperatorPractice3 {
 		firstNum = in.nextInt();
 		System.out.print("두 번째 수:");
 		secondNum= in.nextInt();
-
 		basuString = (firstNum % secondNum ==0) ? "배수 입니다"  : "배수가 아닙니다";
 		
 		System.out.println(basuString);
