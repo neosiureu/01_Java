@@ -1,5 +1,6 @@
 package edu.kh.op.practice;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class OperatorPractice2 {
@@ -18,11 +19,6 @@ public class OperatorPractice2 {
 		System.out.println(ageMessage);
 		System.out.println(adoleMsg);
 		System.out.println(oldChildMsg);
-
-
-
-
-		
 	}
 	
 }
