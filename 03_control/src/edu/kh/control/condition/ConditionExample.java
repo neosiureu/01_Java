@@ -29,7 +29,6 @@ public class ConditionExample {
 			System.out.println("양수가 아닙니다");
 
 		}
-		System.out.printf("ㅇ");
 
 	}
 
@@ -50,14 +49,11 @@ public class ConditionExample {
 			}
 			else {
 				System.out.println("짝수 입니다");
-
-				
 			}
 			
 		}
 		
-		
-		
+	
 	}
 	
 	public void ex3 () {
@@ -221,63 +217,99 @@ public class ConditionExample {
 			if (height>250 || height<0){
 				result = "키를 잘못 입력하셨습니다";
 				}
-			else {
+			
+			else { //정상범주의 키와 나이를 입력한 경우
 				if(age<12 && height<140) {
 					result = "나이와 키 모두 적절치 않음";
 				}
 				else if(age>=13 && height<140) {
 					result = "나이는 적절하나 키가 적절치 않음";
 				}
-				else if(age>=13 && height<140) {
+				else if(age<13 && height>=140) {
 					result = "키는 적절하나 나이가 적절치 않음";
 				}
-				else {result="탑승 가능";}
+				else {result="탑승 가능 !!"; // 변수를 초기화 하지 않고 
+				// 오직 선언만 했을 때는 모든 분기에서 다 초기화가 된다는 보장이 없기에
+				// 조건을 추가해야만 하는 경우가 있음
+				
+				}
 				
 			}
+		
 		}
 		
 		System.out.println(result);
 		}
 	
-		/*
-		 * // 놀이기구 탑승 제한 검사 프로그램
-// 조건 - 나이 : 12세 이상
-// - 키 : 140.0cm 이상
-// 나이를 0~100세 사이로 입력하지 않은 경우 : "나이를 잘못 입력 하셨습니다."
-// 키를 0~250.0cm 사이로 입력하지 않은 경우 : "키를 잘못 입력 하셨습니다."
-// -> 입력이 되자 마자 검사를 진행하여 잘못된 경우 프로그램 종료
-// 나이 O , 키 X : "나이는 적절하나, 키가 적절치 않음";
-// 나이 X , 키 O : "키는 적절하나, 나이는 적절치 않음";
-// 나이 X , 키 X : "나이와 키 모두 적절치 않음";
-// 나이 O , 키 O : "탑승 가능"
+	public void ex9 () {
+		// 여러 케이스 중 하나를 선택하여 수행하는 조건문
+		// 요일의 번호 입력 (1~7) 중 하나이고 1이 월요일 7이 일요일과 같은 식으로 진행
+		int day;
+		System.out.print("요일번호 입력: ");
+		day= sc.nextInt();
+		switch (day) {
+		case 1:
+			System.out.println("월요일 선택");
+			break;
+		case 2:
+			System.out.println("화요일 선택");
+			break;
+		case 3:
+			System.out.println("수요일 선택");
+			break;
+		case 4:
+			System.out.println("목요일 선택");
+			break;
+		case 5:
+			System.out.println("금요일 선택");
+			break;
+		case 6:
+			System.out.println("토요일 선택");
+			break;
+			
+		case 7:
+			System.out.println("일요일 선택");
+		default:
+			System.out.println("잘못된 입력입니다.");
 
-// [실행화면]
-// 나이 입력 : 130
-// 나이를 잘못 입력 하셨습니다
+		}
 
-// 나이 입력 : 30
-// 키 입력 : 300
-// 키를 잘못 입력 하셨습니다
-
-// 나이 입력 : 20
-// 키 입력 : 110
-// 나이는 적절하나, 키가 적절치 않음
-
-// 나이 입력 : 10
-// 키 입력 : 150
-// 키는 적절하나, 나이가 적절치 않음
-
-// 나이 입력 : 10
-// 키 입력 : 110
-// 나이와 키 모두 적절치 않음
-
-// 나이 입력 : 15
-// 키 입력 : 160
-// 탑승 가능!!!
-		 * */
-		
 		
 	}
+
+	
+	public void ex10 () {
+		// 100점 만점의 시험 점수를 입력한다
+		System.out.println("점수 입력: 0에서부터 100까지 넣으세요\n점수 범위를 벗어난 것은 생각하지 말자"  );
+		int score = sc.nextInt();
+		switch (score/10) {
+		
+		case 10 : {
+
+		}
+		case 9 : {
+			System.out.println("학점 : A"); break;
+		}
+		case 8 : {
+			System.out.println("학점 : B"); break;
+		}
+		case 7 : {
+			System.out.println("학점 : C"); break;
+		}
+		case 6 : {
+			System.out.println("학점 : D"); break;
+		}
+		
+		default:
+			System.out.println("학점 : F");
+
+		}
+		
+			
+		}
+	}
+
+
 		
 		
 	
