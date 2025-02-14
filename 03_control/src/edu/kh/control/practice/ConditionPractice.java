@@ -40,7 +40,6 @@ public class ConditionPractice {
 		float avg = (sum /3.0f);
 		if(kor<40 || math< 40 || eng<40) {
 			result = "불합격입니다";
-
 		}
 		else {
 			if(avg<60.0) {
