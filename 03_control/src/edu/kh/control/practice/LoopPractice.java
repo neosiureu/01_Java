@@ -139,7 +139,8 @@ public class LoopPractice {
 	
 	
 	public void practice7 () {
-
+// 행 (row)은 내가 입력한 input만큼 반복 될 듯
+// 열 (col)은 row가 늘어나는 만큼 반복 된다 
 		System.out.print("최대 별의 개수: ");
 
 		int num= sc.nextInt();
@@ -285,5 +286,28 @@ public class LoopPractice {
 		System.out.println();
 		System.out.println("count: " + gongbasu);
 	}
+
+
+	public void practiceSpecial () {
+
+		
+	}
+	
 }
 
+class Solution {
+    public int solution(int n, int w, int num) {
+    	int answer = 0;
+    	int cnt=1;
+    	int line=1;
+    	
+    	for(int i=1; i<=n; i++) {
+    		System.out.println(i);
+    	}
+     
+    	
+    	return answer;
+    	
+    }
+
+}
