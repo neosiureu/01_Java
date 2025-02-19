@@ -7,26 +7,19 @@ public class PracticeRun {
 	public static void main(String[] args) {
 		
 		PracticeService prs = new PracticeService();
-		prs.practice14_2 ();
+		prs.practice13_3 ();
 		
 	}
 
 
 	/*
+ 메소드명: public void practice13_3(){}
+문자열을입력받아문자열에어떤문자가들어갔는지배열에저장하고
+문자의개수와함께출력하세요.
  [실행화면]
-배열의크기를입력하세요: 3
- 1번째문자열: 자바의정석
-2번째문자열: 알고리즘
-3번째문자열: C프로그래밍
-더값을입력하시겠습니까?(Y/N) : y
-더입력하고싶은개수: 2
- 4번째문자열: 인간관계
-5번째문자열: 자기계발
-더값을입력하시겠습니까?(Y/N) : y
-더입력하고싶은개수: 1
- 6번째문자열: 영단어600
-더값을입력하시겠습니까?(Y/N) : n
- [자바의정석, 알고리즘, C프로그래밍, 인간관계, 자기계발, 영단어600
+문자열: application
+문자열에있는문자: a, p, l, i, c, t, o, n
+문자개수: 8
 
 
 */

@@ -405,6 +405,40 @@ public class PracticeService {
 		
 	}
 	
+	
+	public void practice13_3 () {
+		System.out.print("문자열: ");
+	    String input= sc.nextLine();
+	    int cnt=0;
+	    char chString[]=new char[input.length()];
+	    for(int i=0; i<input.length(); i++ ) {
+	    	boolean flag= true; 
+	    	// 이 플래그가 true일 때 한정으로 String을 문자로 된 배열로 옮기겠다.
+	    	// 어떤 i라는 문자가 있을 때 그 전에 있던 문자들과 비교해야 하는데 그 j가 flag를 만족시키면 문자열에 넣자. 
+	    	// 따라서 해당 플래그는 두번째 for문과 비교하기 전에는 항상 true였다가 혹시 같은 것이 있으면 false로 바뀌어야 한다
+	    	   for(int j=0; j<i; j++ ) {
+	   	    	if( input.charAt(i) == input.charAt(j)) {
+	   	    		flag = false;
+	   	    	}
+	   	    }
+	    	   // i번째 문자열을 넣을 건지 말건지를 판단해야 함
+	    	   if(flag) {
+	    		   chString[i] = input.charAt(i);
+	    		   cnt++;
+	    	   }
+	   		
+	    	
+	    }
+		
+
+	    for(int i=0; i<chString.length;i++)
+		{System.out.print(chString[i]);}
+System.out.println();
+
+	    System.out.println(cnt);
+
+	}
+	
 	public void practice14 () {
 		System.out.print("배열의 크기를 입력하세요: ");
 		int arrSize = sc.nextInt();
@@ -448,17 +482,18 @@ public class PracticeService {
 		// 2) 첫 배열에 저장할 문자열을 입력받기
 		// 3) 반복이 시작되는 구간부터 while문을 작성하여 내부에 종료 조건을 만들어 break함
 		// 특히 더 값을 입력하시겠습니까? 부터 while을 써서 얼마나 입력해야하는지 몰라도 되게끔
-		
+		System.out.print("배열의 크기를 입력하세요: ");
+
 		int size = sc.nextInt(); // 첫 배열의 크기
 		String arr[]=new String[size];
-		
+		sc.nextLine();
 		//첫 배열에 저장할 문자열을 입력받기
 		
 		for(int i=0; i<arr.length; i++) {
-			System.out.println((i+1)+"번째 문자열");
-			sc.nextLine(); // 공백까지 포함되게 문자열을 받아야 하기 때문
+			System.out.print((i+1)+"번째 문자열: ");
+			arr[i] = sc.nextLine(); // 공백까지 포함되게 문자열을 받아야 하기 때문
 			// 엔터를 이것이 빼았아가기 때문에
-			sc.nextLine(); // 개행문자 하나를 더 -> 위의 Line을 먹게 해 줌
+			// sc.nextLine(); // 개행문자 하나를 더 -> 위의 Line을 먹게 해 줌
 			
 		}
 		
@@ -489,16 +524,12 @@ public class PracticeService {
 					}
 					else {
 						// 클 경우에는 새로운 값을 입력 받아야 함, 새로운 값들을 받기
-						System.out.println((i+1)+"번째 문자열: ");
+						System.out.print((i+1)+"번째 문자열: ");
 						newArr[i] = sc.nextLine();
 						
 					}
 				}
 				
-			
-				
-				
-			
 			// 나머지는 간단
 			
 			
@@ -516,13 +547,82 @@ public class PracticeService {
 			else {
 				System.out.println("잘못 입력하셨습니다. 다시 입력해주세요");
 			}
-			System.out.println(Arrays.toString(arr));
+	
 
 			
 		}
-	
+		System.out.println(Arrays.toString(arr));
 		
 	}
+	
+public void practice14_3() {
+		
+		// 1. 첫 배열 크기 지정
+		System.out.print("배열의 크기를 입력하세요 : ");
+		int size = sc.nextInt();
+		sc.nextLine(); // 입력 버퍼에 남은 개행문자 제거
+		
+		String[] arr = new String[size];
+		
+		// 2. 첫 배열에 저장할 문자열 입력받기
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print((i+1) + "번째 문자열 : ");
+			arr[i] = sc.nextLine();
+		}
+		
+		// 3. 반복이 시작되는 구간부터 while 작성하여 내부에 종료조건 만들어서 break;
+		while(true) {
+			System.out.print("더 값을 입력하시겠습니까?(y/n) : ");
+			char ch = sc.next().charAt(0);
+			
+			// 4. 값을 더 입력할 경우
+			if(ch == 'y' || ch == 'Y') {
+				
+				// 5. 더 입력받을 개수 입력받기
+				System.out.print("더 입력하고 싶은 개수 : ");
+				int addSize = sc.nextInt();
+				sc.nextLine(); // 입력버퍼에 남은 개행문자 제거
+				
+				// 6. 새로 값을 입력받을 배열 생성 --> 기존 배열 크기 + 추가 입력 개수
+				String[] newArr = new String[arr.length + addSize];
+				
+				// 7. 배열 복사 + 새로운 문자열 입력받기
+				for(int i = 0; i < newArr.length; i++) {
+					
+					if(i < arr.length) { // 인덱스의 크기가 기존 배열보다 작을 경우 (깊은복사)
+						newArr[i] = arr[i]; // 기존 배열 요소 값 복사
+						
+					} else { // 인덱스의 크기가 기존배열 보다 클 경우 (새로운 값 입력받기)
+						System.out.print((i+1) + "번째 문자열 : ");
+						newArr[i] = sc.nextLine();
+					}
+						
+				}
+				
+				// 8. 기존 배열 공간을 참조하던 변수 arr에 새로운 배열 공간의 주소 newArr 대입 (얕은 복사)
+				// 더 입력? y 
+				// 위 코드를 반복할때 기존 배열인 arr의 길이를 기준으로 
+				// 새 배열(newArr)의 크기를 할당하기 때문에
+				arr = newArr;
+				
+			} else if(ch == 'n' || ch == 'N') { // 값을 더 입력하지 않을 경우
+				break; // while 반복문 종료
+				
+			} else { // 잘못 입력한 경우
+				System.out.println("잘못 입력하셨습니다. 다시 입력하세요.");
+			}
+			
+		}
+		
+		// 10. 배열값 모두 출력
+		System.out.println(Arrays.toString(arr));
+		
+		
+		
+		
+	}
+	
+	
 	
 }
 
