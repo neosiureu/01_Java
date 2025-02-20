@@ -29,7 +29,7 @@ public class Hero {
 	
 	@Override
 	public String toString() {
-		return "현재 레벨: " + level+
+		return nickname + " 님의정보:\n"+"현재 레벨: " + level+
 				"\n현재 hp:"+ hp+ "\n현재 mp:" + mp + "\n현재 경험치: "+ exp +"\n"; 
 				
 	}
