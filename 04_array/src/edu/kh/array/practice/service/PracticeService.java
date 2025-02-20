@@ -440,39 +440,7 @@ System.out.println();
 	}
 	
 	public void practice14 () {
-		System.out.print("배열의 크기를 입력하세요: ");
-		int arrSize = sc.nextInt();
-		sc.nextLine(); 
-
-		String[] last = new String[0]; // 초기 배열
-		char ch = 'y';
-		int total = 0;
-
-		while (ch == 'y' || ch == 'Y') {
-		    String[] temp = new String[total + arrSize]; 
-		    System.arraycopy(last, 0, temp, 0, total); // 이전 입력값 복사
-		    
-		    for (int i = 0; i < arrSize; i++, total++) {
-		        System.out.print((total + 1) + "번째 문자열: ");
-		        temp[total] = sc.nextLine();
-		    }
-		    last = temp; // 새 배열을 last배열에 할당하여 마지막에 출력할 수 있도록
-		    
-		    System.out.print("계속 입력하시겠습니까?(y/n): ");
-		    ch = sc.next().charAt(0);
-		    sc.nextLine();
-		    if(ch=='n'||ch=='N') {continue;} // while문을 끝까지 가지 않았으니 ch값이 무엇인지 알 수 없다 
-		    System.out.print("몇개를 더 입력하실거죠?: ");
-		    arrSize = sc.nextInt();
-		    sc.nextLine();
-
-
-		}
-		
-		System.out.println("입력 완료");
-		System.out.println(Arrays.toString(last));
-
-
+	
 		
 	}
 	
