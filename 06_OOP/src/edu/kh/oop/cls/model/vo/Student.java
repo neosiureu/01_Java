@@ -1,5 +1,6 @@
 package edu.kh.oop.cls.model.vo;
 
+
 public                       class             Student { // 클래스 선언 부
 // [접근 제한자] [예약어]	[class]			[클래스 명]
 	
@@ -26,7 +27,7 @@ public                       class             Student { // 클래스 선언 부
 	// static 예약어
 	public static String schoolName = "kh고등학교";
 	
-	// fianl 예약어
+	// final 예약어
 	private final int TEMP1 = 100;
 	
 	

@@ -3,7 +3,7 @@ package edu.kh.oop.cls.model.service;
 import edu.kh.oop.cls.model.vo.Student;
 import edu.kh.oop.cls.model.vo.User;
 
-public class ClsService  {
+public class ClsService extends Student {
 
 	public void ex1() {
 		// 클래스 접근 제한자 확인하기
@@ -15,20 +15,14 @@ public class ClsService  {
 
 		// 필드 접근 제한자 확인하기
 		
-//		System.out.println(std.v1);
-//		// 전체에서 직접 접근 가능한 v1만이 에러가 나지 않음
-//		//System.out.println(std.v2);
-//		//System.out.println(std.v3);
-//		//System.out.println(std.v4);
-//		
-//		System.out.println(v1);
-//		System.out.println(v2);
-//		// Student 클래스를 clsService가 상속받았으므로 Student의 protected 변수인 v2는 직접 접근 가능
-//		//System.out.println(v3);
-//		// 디폴트의 경우 다른 패키지에 있기 때문에 변수 접근이 안된다.
-//		//System.out.println(v4);
-//		// private의 경우 해당 클래스 내부가 아닌 다른 클래스에 있기 때문에 prviate 변수는 접근이 안 된다.
+System.out.println(std.v1);
+	// 전체에서 직접 접근 가능한 v1만이 에러가 나지 않음
+System.out.println(v2);
+// System.out.println(std.v3);
+//System.out.println(std.v4);
+	
 		
+
 
 		
 		
