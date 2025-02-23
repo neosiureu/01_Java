@@ -79,7 +79,27 @@ public class MemberService { // 멤버 객체 자체와는 다름
 				break;
 				
 			case 5:
-				System.out.println("회원 탈퇴 완료: ");
+				System.out.println("회원 탈퇴 과정: ");
+				int result2 = outMember();
+				if(result2==-1) {
+					System.out.println("로그인을 안했는데 어떻게 탈퇴를 합니까?");
+				}
+				
+				else if (result2 == 0) {
+					System.out.println("회원정보 수정 실패 (비밀번호 불일치)");
+				}
+				else if (result2 == 1) { //1이 반환되는 경우
+					System.out.println("회원을 탙퇴하셨습니다. 지금까지 감사했습니다.");
+
+				}
+				else {
+					System.out.println("그래요. 잘 생각했어요"); 
+					System.out.println("회원 탈퇴가 취소되었습니다.");
+
+					
+				}
+				
+				
 				break;
 			case 0: System.out.println("프로그램 종료.."); break;
 			default:
@@ -286,18 +306,23 @@ public class MemberService { // 멤버 객체 자체와는 다름
 				
 				
 				if(inputPw.equals(loginMember.getMemberPw())) {
-					System.out.println("마지막으로 물을게요. 정말 탈퇴할거에요?: ");
-					if(sc.next().charAt(0)== 'Y'||sc.next().charAt(0)== 'y' )
-					{
+					System.out.print("마지막으로 물을게요. 정말 탈퇴할거에요?: ");
+				    String answer = sc.next(); // 한 번만 입력받기
+
+//					if(sc.next().charAt(0)== 'Y'||sc.next().charAt(0)== 'y' )
+				    if(answer.charAt(0) == 'Y' || answer.charAt(0) == 'y') 
+
+				    {
 						loginMember = null;
 						memberInfo = null;
 						// 회원의 로그인 정보를 null로 만들며, 가입 여부도 null로 만든다.
+						return 1;
 
 					}
 					
-					else {System.out.println("그래요. 잘 생각했어요"); }
+					else {					
+					return 2;}
 					
-					return 2;
 					
 				}
 				// 2-2-2) 비밀번호가 다를 경우라면 0을 반환
