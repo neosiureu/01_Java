@@ -43,7 +43,7 @@ public class MemberService { // 멤버 객체 자체와는 다름
 			System.out.print("메뉴 입력 : ");
 			menuNum= sc.nextInt();
 			// 위에 정수를 입력하고 뭘 하던 nextLine()을 받을 것이므로 개행문자 하나를 제거한다.
-			sc.nextLine(); // 입력버퍼에 개행 문자가 사라짐
+		sc.nextLine(); // 입력버퍼에 개행 문자가 사라짐
 
 			
 			
@@ -191,7 +191,6 @@ public class MemberService { // 멤버 객체 자체와는 다름
 		
 		else {
 			return "아이디, 비밀번호가 일치하지 않습니다."; 
-
 		}
 		
 		// 즉 null이면 여기까지 올 일이 없고 회원가입 할때만 이것이 나옴
@@ -309,7 +308,8 @@ public class MemberService { // 멤버 객체 자체와는 다름
 					System.out.print("마지막으로 물을게요. 정말 탈퇴할거에요?: ");
 				    String answer = sc.next(); // 한 번만 입력받기
 
-//					if(sc.next().charAt(0)== 'Y'||sc.next().charAt(0)== 'y' )
+//					if(sc.next().charAt(0)== 'Y'||sc.next().charAt(0)== 'y' ) 
+				    // 위의 명령어대로 하면 scanner를 두 번 써서 두 번 쳐야 하기 때문에 원하는대로 동작하지 않음
 				    if(answer.charAt(0) == 'Y' || answer.charAt(0) == 'y') 
 
 				    {
