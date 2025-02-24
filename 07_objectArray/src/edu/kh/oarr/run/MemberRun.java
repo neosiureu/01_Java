@@ -8,5 +8,4 @@ public class MemberRun {
 		//service.ex();
 		service.displayMenu();
 	}
-
 }

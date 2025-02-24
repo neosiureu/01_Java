@@ -73,7 +73,6 @@ public class MemberService {
 				break;		
 			case 2:
 				System.out.println(login());
-
 				break;
 			case 3:
 				System.out.println(selectMember());

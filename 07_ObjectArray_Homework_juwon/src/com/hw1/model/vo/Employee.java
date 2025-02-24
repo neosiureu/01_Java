@@ -2,16 +2,16 @@ package com.hw1.model.vo;
 
 public class Employee {
 
-	int empNo;
-	String empName;
-	String dept;
-	String job;
-	int age;
-	char gender;
-	int salary;
-	double bonusPoint;
-	String phone;
-	String address;
+ private int empNo;
+ private	String empName;
+ private	String dept;
+ private	String job;
+ private	int age;
+ private	char gender;
+ private	int salary;
+ private	double bonusPoint;
+ private	String phone;
+ private	String address;
 	
 	public Employee() {
 	}
@@ -41,7 +41,12 @@ public class Employee {
 	
 	
 	@Override
-	public String toString() {
+		public String toString() {
+		String str= this.intfomation();
+		return str;
+	}
+	
+	public String intfomation() {
 		return empNo +", "+ empName +", "+ dept +", "+job +", " +age +", "+gender+", "+salary+", "+bonusPoint+
 				", "+phone+", "+address ;
 	}
