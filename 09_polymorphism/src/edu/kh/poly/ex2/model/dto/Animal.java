@@ -23,27 +23,15 @@ public abstract class Animal {
 		this.type = type;
 		this.eatType = eatType;
 	}
-
-
-
 	public String getType() {
 		return type;
 	}
-
-
-
 	public void setType(String type) {
 		this.type = type;
 	}
-
-
-
 	public String getEatType() {
 		return eatType;
 	}
-
-
-
 	public void setEatType(String eatType) {
 		this.eatType = eatType;
 	}
@@ -83,3 +71,4 @@ public abstract class Animal {
 	
 
 }
+
