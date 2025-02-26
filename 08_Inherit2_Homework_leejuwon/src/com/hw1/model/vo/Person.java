@@ -7,6 +7,9 @@ public class Person {
 	protected String name;
 	// private와 protected의 차이는 해당 변수의 직접접근 가능 여부
 	
+	
+	
+	
 	public Person() {
 		// TODO Auto-generated constructor stub
 	}
@@ -34,6 +37,7 @@ public class Person {
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}

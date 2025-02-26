@@ -21,7 +21,7 @@ public class Run {
       }
       // 포 - 타입 - element : 배열
       
-  
+ 
 
       System.out.println();
       System.out.println();
@@ -37,26 +37,27 @@ public class Run {
       Scanner in = new Scanner(System.in);
       int cnt=0;
       while (true) {
-    	 emp[cnt] = new Employee();
-         System.out.print("이름: ");
-         String myName = in.nextLine();
-         emp[cnt].setName(myName);
-         System.out.print("나이: ");
-         emp[cnt].setAge(in.nextInt());
-         in.nextLine();
-         System.out.print("신장: ");
-         emp[cnt].setHeight(in.nextDouble());
-         in.nextLine();
-         System.out.print("몸무게: ");
-         emp[cnt].setWeight(in.nextDouble());
-         in.nextLine();
-         System.out.print("급여: ");
-         emp[cnt].setSalary(in.nextInt());
-         in.nextLine();
-         System.out.print("부처: ");
-         emp[cnt].setDept(in.nextLine());
+    		System.out.print("이름 : ");
+			String name = in.next();
+			
+			System.out.print("나이 : ");
+			int age = in.nextInt();
+			
+			System.out.print("신장 : ");
+			double height = in.nextDouble();
+			
+			System.out.print("몸무게 : ");
+			double weight = in.nextDouble();
+			
+			System.out.print("급여 : ");
+			int salary = in.nextInt();
+			
+			System.out.print("부서 : ");
+			String dept = in.next();
          System.out.print("계속 정보를 추가하시겠습니까? Y/N으로 대답해주세요: ");
          cnt++;
+         
+         emp[cnt] = new Employee(name, age, height, weight, salary, dept);
          
          String str  = in.next();
          //= in.next().toUpperCase(); //반환 값이 대문자로 됨
