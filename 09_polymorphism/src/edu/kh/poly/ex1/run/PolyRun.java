@@ -5,7 +5,7 @@ import edu.kh.poly.ex1.model.service.PolyService;
 public class PolyRun {
 
 	public static void main(String[] args) {
-		new PolyService().ex5();
+		new PolyService().ex2();
 		
 	}
 

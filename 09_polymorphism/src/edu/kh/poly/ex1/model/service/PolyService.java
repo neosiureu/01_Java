@@ -169,12 +169,11 @@ public class PolyService {
 		// 그 다음에야 getBatteryCapacity()가 됨.
 		
 		
-		// 헷갈리면 이러헥 해봐
+		// 헷갈리면 이렇게 해봐
 		Tesla t1 =  (Tesla) c1;
 		// t1은 테슬라 타입이 되므로 그를 이용해 get 가능
 		System.out.println(t1.getBatteryCapacity());
 	}
-	
 	
 	public void ex4 () {
 		// 다운캐스팅 시 주의 사항
@@ -182,7 +181,7 @@ public class PolyService {
 		Car c1= new Tesla();
 		// Tesla 객체를 만들어 업캐스팅한 Car타입 참조변수에 담음
 		
-		// Spark s1 = (Spark) c1 ; 
+		Spark s1 = (Spark) c1 ; 
 		// 아무 관계가 없는 테슬라와 스파크인데 오류가 안남!
 		// 다운 캐스팅 잘못해도 컴파일 에러는 발생하지 않음 => 런타임 에러이기 때문
 		

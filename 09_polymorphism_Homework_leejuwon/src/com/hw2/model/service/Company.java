@@ -51,16 +51,29 @@ public class Company implements ManagementSystem {
 	}
 	@Override
 	public void removePerson(String id) {
+		int temp=-1;
 		// TODO Auto-generated method stub
 		if(employeeCount>0 ) {
 			for (int i=0; i<employees.length; i++) {
-				if(employees[i].getId().equals(id)) {
+				if(employees[i]!=null &&employees[i].getId().equals(id) ) {
+					temp=i;
 					System.out.println(employees[i].getName()+"라는 이름의 직원이 삭제되었습니다");
-					employees[i].setId(null); // 이게 약간 애매한데 id라는 스트링을 없애는 셈이므로 null이맞지않나?
-					employeeCount--;
+					//employees[i].setId(null); // 이게 약간 애매한데 id라는 스트링을 없애는 셈이므로 null이맞지않나?
+					//employeeCount--는 제일 마지막으로 바꿔
 					break;
 				}
-			}		
+			}
+			
+			if (temp!=-1) {
+				for(int i=temp; i<employees.length-1; i++) {
+					employees[i] = employees[i+1];
+					
+				}
+				employees[employees.length-1] = null; // 맨 끝에 있는 것을 널로 만들고
+				employeeCount--; 
+				
+				
+			}
 		}
 		// 삭제할 때 번호가 null이 될 것이므로 하나씩 당겨줘야 함
 		
@@ -76,9 +89,8 @@ public class Company implements ManagementSystem {
 		System.out.println("전체 직원 명단 :");
 
 		for(int i=0; i<employees.length; i++) {
-			if(employees[i].getId() ==null) {break;}
-			System.out.println(employees[i].getInfo());
-			
+			if(employees[i]==null) {continue;}
+			System.out.println(employees[i].getInfo());	
 		}
 		
 	}
