@@ -199,7 +199,7 @@ public class PolyService {
 		
 		if(c1 instanceof Spark) {
 			// c1이 Spark이거나 상속관계인가?
-			Spark s1 = (Spark) c1;
+			//Spark s1 = (Spark) c1;
 			System.out.println("성공");
 		}
 		
