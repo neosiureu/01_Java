@@ -1,5 +1,7 @@
 package edu.kh.generics;
 
+import java.util.ArrayList;
+
 // 제네릭클래스로 이를 선언해보자
 
 public class Box <T> {
@@ -16,4 +18,9 @@ public class Box <T> {
 	public void setItem(T item) {
 		this.item = item;
 	}
+	
+	
+	
+	
+	
 }

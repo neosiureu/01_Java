@@ -1,7 +1,20 @@
 package edu.kh.generics;
 
+import java.util.ArrayList;
+
 public class Run {
 	public static void main(String[] args) {
+		
+		ArrayList<Integer> inums = new ArrayList<>();
+		inums.add(0);
+		inums.add(1);
+		inums.add(2);
+		
+		for(int i=0; i< inums.size(); i++) {
+		System.out.println(inums);
+
+		}
+		
 		
 		Box <String> sBox = new Box();
 		// T는 이제부터 String입니다
