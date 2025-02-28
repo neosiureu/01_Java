@@ -1,6 +1,8 @@
 package edu.kh.collection.pack1.model.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -14,6 +16,8 @@ import edu.kh.collection.pack1.model.dto.Student;
  * 
  */
 public class StudentService {
+	
+	
 	
 	public StudentService() {
 		studentList.add(new Student("홍길동", 23, "서울시 중구", 'M', 100));
@@ -114,13 +118,13 @@ public class StudentService {
 					break;
 				case 4: System.out.println( removeStudent());
 					break;
-				case 5: // searchName1(); 
+				case 5: searchName1();
 					break;
-				case 6: // searchName2();  
+				case 6: searchName2();  
 					break;
-				case 7: // sortByAge();
+				case 7: sortByAge(); // comparable 이용
 					break;
-				case 8: // sortByName();
+				case 8: sortByName();
 					break;
 				case 0: System.out.println("프로그램을 종료합니다");
 					break;
@@ -272,11 +276,7 @@ public class StudentService {
 			// index번째에 있던 기존 학생 정보가 반환될 것이다. 그 객체를 temp에 저장해놓고 보여줄 것이다.
 			Student temp = studentList.set(index, new Student(name, age, region, gender, score));
 			// 수정 이전 객체가 반환. 왜 어차피 바꿀건데 이전 학생의 정보를 받아두어야 하나?
-
-		
-
-	
-			// return studentList.get(index) +"의 정보가 변경되었습니다";
+			// 리턴을 할 때 필요해서
 			return temp.getName()+"의 정보가 변경되었습니다.";
 			}
 		}
@@ -313,4 +313,122 @@ public class StudentService {
 		
 		return "정보 삭제가 취소되었습니다.";
 	}
+	
+	
+	/**
+	 * 5. 이름이 정확히 일치하는 학생을 찾아 조회
+	 * 검색할 이름을 입력받아 studentList에서 꺼내 온 Student객체의 name 값이 같은지 비교
+	 *
+	 * -일치하는 경우에는 Student객체에 대한 내용을 출력
+	 * 일치하는 것이 없다면 검색 결과가 없다는 메시지를 출력
+	 * 
+	 */
+	public void searchName1(){
+		System.out.println("\n================학생 검색 (이름이 완전히 일치해야 합니다)===================");
+		System.out.print("검색할 이름을 입력하세요: ");
+		String input = sc.next();
+		boolean flag = true;
+		for(Student std :studentList ) {
+			if(input.equals(std.getName())) {
+				// 일치하는 이름이 있을 경우
+				System.out.println(std);
+				flag = false;
+			}
+			
+		}
+		if (flag) { System.out.println("일치하는 이름을 찾을 수 없습니다.");
+		}
+
+		
+		
+	}
+	
+	/**
+	 * 6. 이름에 특정 문자열이 포함되는 학생을 찾아서 조회하는 메서드
+	 * 문자열을 입력받아 studentList에서 꺼내 온 Student객체의 name값에 포함되는 문자열인지 검사한다
+	 * 
+	 *  포함되는 학생 객체를 찾는데 성공한 경우 Student객체를 출력한다
+	 *  없다면 "검색결과가 없다고 출력"
+	 *  
+	 */
+	public void searchName2 () {
+		System.out.println("\n================학생 정보 검색 (일부만 일치하는 이름이어도 검색 가능합니다)===================");
+		System.out.print("이름에 포함될 문자열을 입력하세요 : ");
+		String input = sc.next();
+		
+		boolean flag = true;
+		
+		for(Student std:studentList ) {
+			// boolean String.contains(문자열): 앞쪽에 뒤쪽이 포함되어 있으면 참, 아니면 거짓
+			if(std.getName().contains(input)) { //순서는 꼭 이래야 함. input이 포함되는 쪽이므로 주의
+				System.out.println(std);
+				flag = false;
+			}
+			
+		}
+		if(flag) {
+			System.out.println("검색 결과가 없습니다");
+		}
+
+
+		
+	}
+	
+	
+	/*
+	* 
+	*  리스트를 정렬하는 방법
+	* 방법1) Comparable인터페이스를 상속받아 compareTo메서드의 재정의
+	* 이 예시에서는 Student에 Comparable인터페이스를 상속받는다. 
+	* 그를 오버라이딩한 compareTo메서드에서 정의한대로 정렬된다.
+	* 방법2) Comparator 클래스에 의한 정렬 compare()메서드 사용 => 익명 내부 클래스를 이용한다
+	* 이름이 없는 클래스를 즉석에서 선언해 한 번만 사용할 목적으로 작성한다.
+	* 외부에서 그 클래스를 부를 수 없다. 재사용하지 않는다는 의미
+	* 객체를 생성하면서 곧바로 구현 내용을 정의할 수 있다.
+	* why 익명 내부 클래스? 
+	* 1) 코드의 간결화 (별도로 클래스를 만들지 않아도 될 때 사용)
+	* 2) 즉시 사용  한번 사용하고 말 Comparator등을 정의할 때 유용
+	* 3) 지역화 (특정 메서드 안에서만 필요할 때)
+	* */
+	
+	/**
+	 * 나이에 따라 오름차순으로 정렬하는 메서드
+	 * 
+	 */
+	public void sortByAge () {
+		Collections.sort(studentList);
+		// compareTo 메서드가 실행 되어야 함=> 물론 그 안에 있는 Student객체에 대한 compareTo를 내가 정의했어야 함
+		for(Student std:studentList) {
+			System.out.println(std); // 23 23 30 27 24
+		}
+	}
+	
+
+	public void sortByName () {
+		// 이름에 따라 정렬하기 (가나다순)
+		Collections.sort(studentList, new Comparator<Student>() {
+				// 익명 내부클래스는 Comparator의 인터페이스를 상속받아 구현한 클래스가 된다
+	// public class ABC implements Comparator대신에 한번만 쓰고 버릴 것이니 이 내부 클래스를 쓴 것
+			
+			@Override
+			public int compare(Student o1, Student o2) { // 각기 다른 Student객체 둘이 들어온 것
+				// 그를 통해 비교
+				
+				// 두 객체를 비교하고 순서를 결정한다 => 반환값: 왼쪽-오른쪽으로 compareTo와 같음
+
+				return o1.getName().compareTo(o2.getName()) ; // String 클래스에서 만든 compareTo라는 다른 메서드를 구현
+				// 자바에서 문자열 객체를 비교하는 메서드
+			}
+		
+		} 
+					
+/* 여기가 sort메서드의 끝입니다 */);
+		
+		for(Student std: studentList) {
+			System.out.println(std);
+		}
+		/*여기가 sortByName메서드의 끝입니다*/ 
+	}
+	
+	
 }
