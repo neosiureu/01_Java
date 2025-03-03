@@ -48,39 +48,39 @@ public class StudentService {
 	
 	
 	
-//	private List <Object> testlist = new ArrayList<Object>();
+	private List <Object> testlist = new ArrayList<Object>();
 	// ex에서의 사용을 위한 리스트
 
-//	public void ex () { // List 테스트용 예제
-//		// 추가 => add = List.add(Object e): 리스트에 객체를 추가 
-//		// 매개변수 타입은 실제로 Object임 그 말은 모든 하위 객체를 매개변수로 전달 가능
-//		System.out.println("정말 모든 것을 받을 수 있나?");
-//
-//		testlist.add("문자열");
-//		testlist.add(new Student("홍길동", 25, "서울시 중구", 'M',25 ));
-//		testlist.add(sc);
-//		testlist.add(new Object());
-//		
-//		// Object List.get(i) => i번째 인덱스에 있는 객체를 반환
-//		// 반환형을 보니 모든 것을 반환할 수 있다.
-//		System.out.println(testlist.get(0));
-//		System.out.println(testlist.get(1));
-//		System.out.println(testlist.get(2));
-//		System.out.println(testlist.get(3));
-//		
-//		// 컬렉션의 특징 => 여러 타입의 데이터를 저장할 수 있다.		
-//		
-//		// testList에서 꺼내온 인덱스의 요소가 Student혹은 그의 상속 관계인지 검사하고
-//		// 만약 Student라면 이름만 반환한다
-//		
-//		for( Object e : testlist ) {
-//			if(e instanceof Student) {
-//				System.out.println(((Student)e).getName());
-//			}		
-//		}
-//		
-//	}
-//	
+	public void ex () { // List 테스트용 예제
+		// 추가 => add = List.add(Object e): 리스트에 객체를 추가 
+		// 매개변수 타입은 실제로 Object임 그 말은 모든 하위 객체를 매개변수로 전달 가능
+		System.out.println("정말 모든 것을 받을 수 있나?");
+
+		testlist.add("문자열");
+		testlist.add(new Student("홍길동", 25, "서울시 중구", 'M',25 ));
+		testlist.add(sc);
+		testlist.add(new Object());
+		
+		// Object List.get(i) => i번째 인덱스에 있는 객체를 반환
+		// 반환형을 보니 모든 것을 반환할 수 있다.
+		System.out.println(testlist.get(0));
+		System.out.println(testlist.get(1));
+		System.out.println(testlist.get(2));
+		System.out.println(testlist.get(3));
+		
+		// 컬렉션의 특징 => 여러 타입의 데이터를 저장할 수 있다.		
+		
+		// testList에서 꺼내온 인덱스의 요소가 Student혹은 그의 상속 관계인지 검사하고
+		// 만약 Student라면 이름만 반환한다
+		
+		for( Object e : testlist ) {
+			if(e instanceof Student) {
+				System.out.println(((Student)e).getName());
+			}		
+		}
+		
+	}
+	
 
 	
 	/**
@@ -318,7 +318,6 @@ public class StudentService {
 	/**
 	 * 5. 이름이 정확히 일치하는 학생을 찾아 조회
 	 * 검색할 이름을 입력받아 studentList에서 꺼내 온 Student객체의 name 값이 같은지 비교
-	 *
 	 * -일치하는 경우에는 Student객체에 대한 내용을 출력
 	 * 일치하는 것이 없다면 검색 결과가 없다는 메시지를 출력
 	 * 
@@ -333,14 +332,10 @@ public class StudentService {
 				// 일치하는 이름이 있을 경우
 				System.out.println(std);
 				flag = false;
-			}
-			
+			}	
 		}
 		if (flag) { System.out.println("일치하는 이름을 찾을 수 없습니다.");
 		}
-
-		
-		
 	}
 	
 	/**
@@ -355,9 +350,7 @@ public class StudentService {
 		System.out.println("\n================학생 정보 검색 (일부만 일치하는 이름이어도 검색 가능합니다)===================");
 		System.out.print("이름에 포함될 문자열을 입력하세요 : ");
 		String input = sc.next();
-		
 		boolean flag = true;
-		
 		for(Student std:studentList ) {
 			// boolean String.contains(문자열): 앞쪽에 뒤쪽이 포함되어 있으면 참, 아니면 거짓
 			if(std.getName().contains(input)) { //순서는 꼭 이래야 함. input이 포함되는 쪽이므로 주의
@@ -369,9 +362,6 @@ public class StudentService {
 		if(flag) {
 			System.out.println("검색 결과가 없습니다");
 		}
-
-
-		
 	}
 	
 	
@@ -413,7 +403,6 @@ public class StudentService {
 			@Override
 			public int compare(Student o1, Student o2) { // 각기 다른 Student객체 둘이 들어온 것
 				// 그를 통해 비교
-				
 				// 두 객체를 비교하고 순서를 결정한다 => 반환값: 왼쪽-오른쪽으로 compareTo와 같음
 
 				return o1.getName().compareTo(o2.getName()) ; // String 클래스에서 만든 compareTo라는 다른 메서드를 구현

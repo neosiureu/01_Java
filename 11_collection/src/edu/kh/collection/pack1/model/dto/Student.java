@@ -48,6 +48,9 @@ public class Student implements Comparable<Student> {
 		this.score = score;
 	}
 	
+	// 기능
+
+	
 	@Override
 	public String toString() {
 		return "Student [name=" + name + ", age=" + age + ", region=" + region + ", gender=" + gender + ", score="
@@ -76,7 +79,6 @@ public class Student implements Comparable<Student> {
 	
 	
 	
-	// 기능
 	
 
 }

@@ -4,29 +4,38 @@ import java.util.TreeMap;
 
 public class Toy {
 	String name;
-	int age;
 	int price;
 	String color;
+	int age;
 	int date;
 	TreeMap<Integer , String > material = new TreeMap<>();
 
 	
 	
+
+	
+
+	
 	public Toy() {
-		
+		material.put(1,"면직물");
+		material.put(2, "플라스틱");
+		material.put(3, "유리");
+		material.put(4, "고무");
 	}
 
+	
 
 
-	public Toy(String name, int age, int price, String color, int date, TreeMap<Integer, String> material) {
+	public Toy(String name, int price, String color, int age, int date, TreeMap<Integer, String> material) {
 		super();
 		this.name = name;
-		this.age = age;
 		this.price = price;
 		this.color = color;
+		this.age = age;
 		this.date = date;
 		this.material = material;
 	}
+
 
 
 
@@ -38,18 +47,6 @@ public class Toy {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-
-
-	public int getAge() {
-		return age;
-	}
-
-
-
-	public void setAge(int age) {
-		this.age = age;
 	}
 
 
@@ -78,6 +75,18 @@ public class Toy {
 
 
 
+	public int getAge() {
+		return age;
+	}
+
+
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+
+
 	public int getDate() {
 		return date;
 	}
@@ -99,8 +108,9 @@ public class Toy {
 	public void setMaterial(TreeMap<Integer, String> material) {
 		this.material = material;
 	}
-	
-	
+
+
+
 	
 	
 
