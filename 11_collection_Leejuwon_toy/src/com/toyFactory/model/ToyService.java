@@ -299,41 +299,31 @@ public class ToyService {
 
 		
 	
-	public void addMaterials (String tmpMaterial,int ... tmpNum) {
-		
-		boolean flag = true;
-		for(int k=0; k<tmpNum.length; k++) {
-		for(Integer i: materialMap.keySet()) {
-			if(tmpNum[k]==i) {
-				System.out.println("이미 해당 키에 재료가 등록 되어 있습니다.");
-				System.out.print("덮어쓰시겠습니까?");
-				char choice = sc.next().toLowerCase().charAt(0);
-				if(choice =='y') {
-					materialMap.put(tmpNum[k],tmpMaterial);
-					System.out.println(tmpMaterial+"가 등록 되었습니다.");
-					System.out.println();
-					flag = false;
-				}
-				
-				else {
-					System.out.println("덮어쓰기가 취소되었습니다.");
-					System.out.println();
-					flag = false;
-
-				}
-
-			}
-		
-		}
-		if(flag) {
-			materialMap.put(tmpNum[k],tmpMaterial);
-			System.out.println(tmpMaterial+"가 등록 되었습니다.");
-
-		}
-	}
-		
-	
-		
+	public void addMaterials(String tmpMaterial, int... tmpNum) {
+	    boolean flag = true;
+	    
+	    // 여러 개의 tmpNum을 처리하기 위해 for문 사용
+	    for (int num : tmpNum) { 
+	        if (materialMap.containsKey(num)) { // 이미 등록된 키인지 확인
+	            System.out.println("키 " + num + " 에는 이미 재료가 등록되어 있습니다.");
+	            System.out.print("덮어쓰시겠습니까? (y/n): ");
+	            char choice = sc.next().toLowerCase().charAt(0);
+	            
+	            if (choice == 'y') {
+	                materialMap.put(num, tmpMaterial);
+	                System.out.println("키 " + num + " 에 " + tmpMaterial + "가 덮어쓰여 등록되었습니다.");
+	                flag = false;
+	            } else {
+	                System.out.println("덮어쓰기가 취소되었습니다.");
+	                flag = false;
+	            }
+	        }
+	        
+	        if (flag) { // 기존에 존재하지 않는 경우 추가
+	            materialMap.put(num, tmpMaterial);
+	            System.out.println("키 " + num + " 에 " + tmpMaterial + "가 등록되었습니다.");
+	        }
+	    }
 	}
 	
 	public void deleteMaterials() {
