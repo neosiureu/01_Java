@@ -1,6 +1,6 @@
-package com.hw4.model.dto;
+package com.toyFactory.model.dto;
 
-import java.util.TreeMap;
+import java.util.*
 
 public class Toy {
 	String name;
@@ -10,7 +10,7 @@ public class Toy {
 	int date;
 	TreeMap<Integer , String > material = new TreeMap<>();
 
-	
+	// 필드는 6개: 장난감 이름, 사용가능연령 가격 색상 제조일(String) 재료 => Set인데 String만 이용 => 중복 되지 않는 값으로 저장하겠다
 	
 
 	

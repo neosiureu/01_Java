@@ -1,9 +1,15 @@
-package com.hw4.model.service;
+package com.toyFactory.model.service;
 
 import java.util.Scanner;
 
 public class ToyService {
 	Scanner sc = new Scanner(System.in);
+	
+	// 필드는 셋 
+	// Scanner, 중복된 Toy객체가 없도록 저장할 컬렉션 Set
+	// 재료가 저장될 Map => 재료는 Map <Integer,String>
+	// 가령 1= "면직물" 2= "플라스틱"과 같이 저장
+	
 	
 	public void displayMenu() {
 		int choice=-1;
