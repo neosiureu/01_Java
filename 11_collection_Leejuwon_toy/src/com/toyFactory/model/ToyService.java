@@ -92,7 +92,6 @@ public class ToyService {
 			System.out.print("메뉴를 입력 하세요: " );
 			
 
-
 			choice = sc.nextInt();
 			
 			switch (choice) {
@@ -128,7 +127,7 @@ public class ToyService {
 				int tmpNum = sc.nextInt();
 				System.out.print("재료 입력: ");
 				String tmpMaterial = sc.next();
-				addMaterials(tmpNum, tmpMaterial);
+				addMaterials(tmpMaterial, tmpNum);
 				break;
 				// 가장 어려웠던 문제
 			case 7:  deleteMaterials();
@@ -300,16 +299,17 @@ public class ToyService {
 
 		
 	
-	public void addMaterials (int tmpNum, String tmpMaterial) {
+	public void addMaterials (String tmpMaterial,int ... tmpNum) {
 		
 		boolean flag = true;
+		for(int k=0; k<tmpNum.length; k++) {
 		for(Integer i: materialMap.keySet()) {
-			if(tmpNum==i) {
+			if(tmpNum[k]==i) {
 				System.out.println("이미 해당 키에 재료가 등록 되어 있습니다.");
 				System.out.print("덮어쓰시겠습니까?");
 				char choice = sc.next().toLowerCase().charAt(0);
 				if(choice =='y') {
-					materialMap.put(tmpNum,tmpMaterial);
+					materialMap.put(tmpNum[k],tmpMaterial);
 					System.out.println(tmpMaterial+"가 등록 되었습니다.");
 					System.out.println();
 					flag = false;
@@ -326,11 +326,11 @@ public class ToyService {
 		
 		}
 		if(flag) {
-			materialMap.put(tmpNum,tmpMaterial);
+			materialMap.put(tmpNum[k],tmpMaterial);
 			System.out.println(tmpMaterial+"가 등록 되었습니다.");
 
 		}
-		
+	}
 		
 	
 		
