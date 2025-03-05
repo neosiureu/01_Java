@@ -75,13 +75,13 @@ public class ToyFactory {
 
 			// map에 없는 key를 입력하여 value를 얻어왔을 때 == null
 
-			if (materialValue != null) { // 재료 목록에 있을 때
-				addedMaterials.add(materialValue);
+			if (materialValue != null) { // 재료 목록에 이미 있다고 가정하면
+				addedMaterials.add(materialValue); // 그 재료를 Toy 생성자에서 추가한다.
 			}
 
 		}
 
-		return addedMaterials;
+		return addedMaterials; //추가한 materials를 반환한다.
 	}
 
 	
@@ -107,21 +107,12 @@ public class ToyFactory {
 
 				switch (menuNum) {
 				case 1: displayAllToys(); break;
-				
 				case 2: createNewToy(); break;
-				
 				case 3: deleteToy(); break;
-				
 				case 4: displayToysByManufactureDate(); break;
 				case 5: displayToysByAge(); break;
-					
-				case 6:
-					addMaterial();
-					break;
-				case 7:
-					removeMaterialByName();
-					break;
-				
+				case 6: addMaterial(); break;
+				case 7: removeMaterialByName(); break;
 				case 0:
 					System.out.println("프로그램을 종료합니다");
 					break;
@@ -144,357 +135,205 @@ public class ToyFactory {
 
 	}
 	
-	/** 전체 장난감 조회하기
-	 * 
-	 */
 	public void displayAllToys() {
-		System.out.println("\n<전체 장난감 목록>");
-		
-		if(toySet.isEmpty()) {
-			System.out.println("생성된 장난감이 없습니다.");
-			return;
-		}
-		
-		int index = 1;
-		for(Toy toy : toySet) {
-			System.out.println(index + ". " + toy);
-			index++;
-		}
+	    System.out.println("\n<전체 장난감 목록>");
+	    if(toySet.isEmpty()) { //toySet이 비어있다면 
+	        System.out.println("생성된 장난감이 없습니다.");
+	        return;
+	    }
+	    int index = 1;
+	    for(Toy toy : toySet) { // for each문을 활용하되 index를 늘릴 수 없으므로 따로 변수를 선언해야 한다.
+	        System.out.println(index + ". " + toy);
+	        index++;
+	    }
 	}
-	
-	
-	/** 새로운 장난감 만들기
-	 * 
-	 */
-	public void createNewToy() throws Exception{
-		System.out.println("\n<새로운 장난감 추가>");
-		
-		// 장난감 이름 입력받음
-		// -> 이미 존재하는 장난감인지 이름으로 확인
-		System.out.print("장난감 이름 : ");
-		String name = sc.next();
-		
-		for(Toy existingToy : toySet) {
-			
-			if(existingToy.getName().equals(name)) {
-				System.out.println("이미 같은 이름을 가진 장난감이 존재합니다.");
-				return;
-			}
-		}
-		
-		System.out.print("사용 가능 연령 : ");
-		int age = sc.nextInt();
-		
-		System.out.print("가격 : ");
-		int price = sc.nextInt();
-		
-		System.out.print("색상 : ");
-		String color = sc.next();
-		
-		System.out.print("제조일 (YYYYMMDD 형식으로 입력) : ");
-		String manufactureDate = sc.next();
-		
-		Set<String> materials = new HashSet<String>(); // 재료 저장할 Set 객체 생성
-		
-		System.out.println("사용 가능한 재료 목록");
-		
-		//System.out.println(materialMap.entrySet()); 
-		// [1=면직물, 2=플라스틱, 3=유리, 4=고무]
-		// Set <Entry<K, V> > Map.entrySet() : key=value 한 쌍으로 이루어진 Entry 객체를 
-		// Set 객체로 반환
-		
-		// Entry.getKey() : Entry 객체의 key 반환
-		// Entry.getValue() : Entry 객체의 value 반환
-		for( Entry<Integer, String> entry  : materialMap.entrySet() ) {
-			System.out.println( entry.getKey() + " : " + entry.getValue() );
-			// 1 : 면직물
-			// 2 : 플라스틱
-			// 3 : 유리
-			// 4 : 고무
 
-		}
-		
-		while(true) {
-			System.out.print("추가할 재료의 번호를 입력하세요 (종료하려면 'q'를 입력하세요) : ");
-			
-			try {
-				String input = sc.next();
-				
-				if(input.equals("q")) { // 종료 시
-					break;
-				}
-				
-				// String 형인 input을 int형 정수값으로 변환(Integer Wrapper 클래스 이용)
-				int materialKey = Integer.parseInt(input); // "1" -> 1 
-				// NumberFormatException 발생 가능성 있음 : 문자열(String)을 숫자로 변환하려고 할 때, 변환이 불가능한 경우 발생
-				String material = materialMap.get(materialKey); // "면직물"
-				// 입력받은 재료고유번호(key)로
-				// map에 저장된 재료명(value)를 얻어옴
-				
-				if(material != null) { // 재료명이  null 이 아니라면
-					
-					// materials Set객체에 해당 재료명이 존재하는지
-					if(materials.contains(material)) {
-						System.out.println("이미 추가된 재료입니다. 다른 재료를 선택하세요");
-					
-					} else { // Set에 중복된 재료가 없으면 새로 추가
-						materials.add(material);
-						System.out.println("재료가 추가되었습니다 : " + material);
-					}
-					
-				} else { // 재료명이 null == 없는 재료고유번호를 입력했다는 의미
-					System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
-				}
-				
-			} catch(NumberFormatException e) { // 재료번호 입력 시 숫자나 q 가 아닌 경우 예외처리 바로 함
-				System.out.println("숫자를 입력하거나 q를 입력하세요.");
-			}
-			
-		}
-		
-		Toy newToy = new Toy(name, age, price, color, manufactureDate, materials);
-														// 추가할 재료 저장된 새로운 Set객체
-		
-		toySet.add(newToy);
-		System.out.println("새로운 장난감이 추가되었습니다!");
-		
-		
+	public void createNewToy() throws Exception { //혹시 모를 예외처리를 대비해
+	    System.out.println("\n<새로운 장난감 추가>");
+	    System.out.print("장난감 이름 : "); 
+	    String name = sc.next();
+	    for(Toy existingToy : toySet) { // 각 toySet 원소에 대해
+	        if(existingToy.getName().equals(name)) { // 순회해가며 getName을 하면 각 장난감의 이름이 나온다. 
+	        	// String.equals로 입력받은 name과 비교한다
+	            System.out.println("이미 같은 이름을 가진 장난감이 존재합니다.");
+	            return; //이미 같은 이름의 장난감이 있다면 더 이상 입력받지 않는다.
+	            // Set은 완전히 똑같은 객체는 걸러주지만 이름만 똑같고 다른 정보가 다른 객체는 중복 확인에 있어 거를 수 없으므로 이렇게 해야 함
+	        }
+	    }
+	    System.out.print("사용 가능 연령 : ");
+	    int age = sc.nextInt();
+	    System.out.print("가격 : ");
+	    int price = sc.nextInt();
+	    System.out.print("색상 : ");
+	    String color = sc.next();
+	    System.out.print("제조일 (YYYYMMDD 형식으로 입력) : ");
+	    String manufactureDate = sc.next();
+	    Set<String> materials = new HashSet<String>(); // materials는 문자열만 들어와야 하므로 제네릭
+	    // 또한 중복되는 재료는 없어야 하므로 
+	    // 여기에서 materials라는 이름의 HashSet을 생성한다. (원래 재료 목록은 materialMap이라는 Map에 있었다는 것을 잊지 말자)
+	    System.out.println("사용 가능한 재료 목록");
+	    for(Entry<Integer, String> entry  : materialMap.entrySet()) { //  Entry라는 객체는 내부 인터페이스의 일종
+	        System.out.println(entry.getKey() + " : " + entry.getValue());  // entry.getKey() entry.getValue()메서드로 
+	        // 키와 값을 뽑아온다 
+	    }
+	    
+	    /*Entry 객체를 따로 생성한 것이 아니라 
+	     * materialMap.entrySet()을 통해 Map이 가지고 있는 key-value 쌍을 Entry 형태로 가져와 사용하는 것. 
+	     * 따라서 Entry를 직접 생성하지 않아도 entrySet()을 통해 활용할 수 있다.
+	     * */
+	    while(true) {
+	        System.out.print("추가할 재료의 번호를 입력하세요 (종료하려면 'q'를 입력하세요) : ");
+	        try {
+	            String input = sc.next(); //입력받는 타입은 문자열
+	            if(input.equals("q")) {
+	                break;
+	            }
+	            int materialKey = Integer.parseInt(input); // parseInt를 할 때 q가 아닌 다른 문자열이 온다면 예외 발생
+	            String material = materialMap.get(materialKey); // 받은 문자열을 키 삼아 값을 반환하여 String material에 저장
+	            if(material != null) {
+	                if(materials.contains(material)) {
+	                    System.out.println("이미 추가된 재료입니다. 다른 재료를 선택하세요"); // 문자열의 contains 메서드로 비교
+	                } else {
+	                    materials.add(material);
+	                    System.out.println("재료가 추가되었습니다 : " + material); // 재료 추가 성공 시 
+	                }
+	            } else {
+	                System.out.println("잘못된 번호입니다. 다시 입력해주세요."); // 재료의 번호가 없으면 이를 출력
+	            }
+	        } catch(NumberFormatException e) {
+	            System.out.println("숫자를 입력하거나 q를 입력하세요."); // 숫자나 q를 제외한 다른 문자열을 입력할 때
+	            // int materialKey = Integer.parseInt(input) 과정에서 발생하는 오류를 catch
+	            //
+	        }
+	    }
+	    Toy newToy = new Toy(name, age, price, color, manufactureDate, materials); // materials라는 Set 객체를 마지막 인자로 
+	    // (필드에 있는 맵 객체 materialMap과는 다름. materials는 중복이 없어야하며 무조건 문자열만 들어와여야 함)
+	    toySet.add(newToy);
+	    // 해당 Toy객체를 add로 set에 저장.
+	    System.out.println("새로운 장난감이 추가되었습니다!");
+	}
+
+	public void deleteToy() throws Exception {
+	    System.out.println("\n<장난감 삭제하기>");
+	    if(toySet.isEmpty()) {
+	        System.out.println("생성된 장난감이 없습니다.");
+	        return;
+	    }
+	    System.out.print("삭제할 장난감의 이름을 입력하세요 : ");
+	    String toyName = sc.next();
+	    boolean flag = false;
+	    for(Toy toy : toySet) {
+	        if(toy.getName().equals(toyName)) {
+	            toySet.remove(toy);
+	            flag = true;
+	            break;
+	        }
+	    }
+	    if(flag) {
+	        System.out.println("장난감이 삭제되었습니다.");
+	    } else {
+	        System.out.println("해당하는 이름의 장난감을 찾을 수 없습니다.");
+	    }
+	}
+
+	public void addMaterial() throws Exception {
+	    System.out.println("\n<재료 추가>");
+	    System.out.println("---현재 등록된 재료---");
+	    if(materialMap.isEmpty()) {
+	        System.out.println("등록된 재료가 없습니다.");
+	        return;
+	    }
+	    for(Entry<Integer, String> entry : materialMap.entrySet()) {
+	        System.out.println(entry.getKey() + " : " + entry.getValue());
+	    }
+	    System.out.println("-------------------------------------");
+	    System.out.print("재료 고유번호(Key) 입력 : ");
+	    int key = sc.nextInt();
+	    System.out.print("재료명 입력 : ");
+	    String material = sc.next();
+	    if(materialMap.containsKey(key)) {
+	        System.out.println("이미 해당 키에 재료가 등록되어 있습니다.");
+	        System.out.print("덮어쓰시겠습니까? (Y/N) : ");
+	        String input = sc.next();
+	        if(input.equalsIgnoreCase("Y")) {
+	            materialMap.put(key, material);
+	        } else {
+	            System.out.println("재료 추가가 취소되었습니다.");
+	        }
+	    } else {
+	        materialMap.put(key, material);
+	        System.out.println("새로운 재료가 성공적으로 등록되었습니다.");
+	    }
+	}
+
+	public void removeMaterialByName() throws Exception {
+	    System.out.println("\n<재료 삭제>");
+	    System.out.println("---현재 등록된 재료---");
+	    if(materialMap.isEmpty()) {
+	        System.out.println("등록된 재료가 없습니다.");
+	        return;
+	    }
+	    for(Entry<Integer, String> entry : materialMap.entrySet()) {
+	        System.out.println(entry.getKey() + " : " + entry.getValue());
+	    }
+	    System.out.println("-------------------------------------");
+	    System.out.print("삭제할 재료명 입력 : ");
+	    String materialName = sc.next();
+	    boolean flag = false;
+	    for(Entry<Integer, String> entry : materialMap.entrySet()) {
+	        if(entry.getValue().equals(materialName)) {
+	            materialMap.remove(entry.getKey());
+	            System.out.println("재료 '" +  materialName + "' 가 성공적으로 제거되었습니다.");
+	            flag = true;
+	            break;
+	        }
+	    }
+	    if(!flag) {
+	        System.out.println("해당 이름의 재료가 존재하지 않습니다.");
+	    }
 	}
 	
-	
-	/** 장난감 삭제하기
-	 * 
-	 */
-	public void deleteToy() throws Exception{
-		
-		System.out.println("\n<장난감 삭제하기>");
-		
-		if(toySet.isEmpty()) {
-			System.out.println("생성된 장난감이 없습니다.");
-			return;
-		}
-		
-		System.out.print("삭제할 장난감의 이름을 입력하세요 : ");
-		String toyName = sc.next();
-		
-		boolean flag = false;
-		
-		for(Toy toy : toySet) {
-			
-			if(toy.getName().equals(toyName)) {
-				toySet.remove(toy);
-				// Set.remove(Object);
-				flag = true;
-				break; // java.util.ConcurrentModificationException
-				// 1. 효율 향상을 위해 break;
-				// 2. 순회중인 컬렉션 객체가 수정되어 충돌한다는 예외 발생
-				// -> 예외 방지 및 효율을 위해서 작성
-			}
-			
-		}
-		
-		if(flag) {
-			System.out.println("장난감이 삭제되었습니다.");
-		} else {
-			System.out.println("해당하는 이름의 장난감을 찾을 수 없습니다.");
-		}
-		
-	}
-	
-	
-	/** 재료 추가하기
-	 * @throws Exception
-	 */
-	public void addMaterial() throws Exception{
-		
-		System.out.println("\n<재료 추가>");
-		System.out.println("---현재 등록된 재료---");
-		
-		if(materialMap.isEmpty()) {
-			System.out.println("등록된 재료가 없습니다.");
-			return;
-		}
-		
-		for(Entry<Integer, String> entry : materialMap.entrySet()) {
-			System.out.println(entry.getKey() + " : " + entry.getValue());
-		}
-		
-		System.out.println("-------------------------------------");
-		
-		System.out.print("재료 고유번호(Key) 입력 : ");
-		int key = sc.nextInt();
-		
-		System.out.print("재료명 입력 : ");
-		String material = sc.next();
-		
-		if(materialMap.containsKey(key)) { // materialMap에 이미 존재하는 Key 인지 확인 
-			
-			System.out.println("이미 해당 키에 재료가 등록되어 있습니다.");
-			System.out.print("덮어쓰시겠습니까? (Y/N) : ");
-			String input = sc.next();
-			
-			if(input.equalsIgnoreCase("Y")) {
-				// equalsIgnoreCase : 대문자인지 소문자인지 구분하지 않고 문자열 값 자체만 비교
-				materialMap.put(key, material); // 같은 key로 추가 시 value 덮어쓰기함
-			} else {
-				System.out.println("재료 추가가 취소되었습니다.");
-			}
-			
-		} else {
-			materialMap.put(key, material);
-			System.out.println("새로운 재료가 성공적으로 등록되었습니다.");
-		}
-		
-		
-	}
-	
-	
-	/** 재료명으로 재료 삭제하기
-	 * @throws Exception
-	 */
-	public void removeMaterialByName() throws Exception{
-		
-		System.out.println("\n<재료 삭제>");
-		System.out.println("---현재 등록된 재료---");
-		
-		if(materialMap.isEmpty()) {
-			System.out.println("등록된 재료가 없습니다.");
-			return;
-		}
-		
-		for(Entry<Integer, String> entry : materialMap.entrySet()) {
-			System.out.println(entry.getKey() + " : " + entry.getValue());
-		}
-		
-		System.out.println("-------------------------------------");
-		
-		System.out.print("삭제할 재료명 입력 : ");
-		String materialName = sc.next();
-		
-		boolean flag = false;
-		
-		
-		for(Entry<Integer, String> entry : materialMap.entrySet()) {
-			
-			if(entry.getValue().equals(materialName)) {
-				materialMap.remove(entry.getKey());
-				
-				System.out.println("재료 '" +  materialName + "' 가 성공적으로 제거되었습니다.");
-				flag = true;
-				break;
-			}
-			
-		}
-		
-		if(!flag) {
-			System.out.println("해당 이름의 재료가 존재하지 않습니다.");
-		}
-		
-		
-		
-	}
-	
-	
-	
-	/** 제조일순으로 장난감 정렬하기
-	 * 
-	 */
 	public void displayToysByManufactureDate() {
-		System.out.println("\n<제조일 순으로 장난감을 정렬>");
-		
-		if(toySet.isEmpty()) {
-			System.out.println("생성된 장난감이 없습니다.");
-			return;
-		}
-		
-		List<Toy> toyList = new ArrayList<Toy>(toySet);
-	
-		// 제조일 오름차순으로 정렬하기 위한 Comparator 구현 내부 클래스
-		Collections.sort(toyList, new Comparator<Toy>() {
-			@Override
-			public int compare(Toy o1, Toy o2) {
-				// 문자열끼리 비교 compareTo() 사용
-				return o1.getManufactureDate().compareTo(o2.getManufactureDate());
-			}
-		});
-		
-		int index = 1;
-		for(Toy toy : toyList) {
-			System.out.println(index + ". " + toy);
-			index++;
-		}
-		
+	    System.out.println("\n<제조일 순으로 장난감을 정렬>");
+	    if(toySet.isEmpty()) {
+	        System.out.println("생성된 장난감이 없습니다.");
+	        return;
+	    }
+	    List<Toy> toyList = new ArrayList<Toy>(toySet);
+	    Collections.sort(toyList, new Comparator<Toy>() {
+	        @Override
+	        public int compare(Toy o1, Toy o2) {
+	            return o1.getManufactureDate().compareTo(o2.getManufactureDate());
+	        }
+	    });
+	    int index = 1;
+	    for(Toy toy : toyList) {
+	        System.out.println(index + ". " + toy);
+	        index++;
+	    }
 	}
-	
-	
-	/** 연령별 사용 가능한 장난감 리스트 조회하기
-	 * 
-	 */
+
 	public void displayToysByAge() {
-		
-		System.out.println("\n<연령별로 사용 가능한 장난감>");
-		
-		Map<Integer , List<Toy>> toysByAge = new HashMap<Integer, List<Toy>>();
-		// toysByAge라는 이름의 새로운 Map을 생성
-		// -> 연령을 key로 지정하고, 해당 연령을 가진 장난감 List를 value 로 가짐
-		// { K : V, K : V, K : V... } 
-		// -> { 5 : ["키시미시", "허기워기"], 8 : ["캣냅", "마미롱레그"] , 12 : ["파피"] }
-		
-		for(Toy toy : toySet) {
-			
-			int age = toy.getAge(); // 현재 toy 객체가 가진 나이 얻어오기
-			
-			//if문에서 boolean containsKey(Key) 대신 사용가능한 로직.
-			toysByAge.putIfAbsent(age, new ArrayList<Toy>());
-			// putIfAbsent() : Map에서 제공하는 메서드로,
-			// 해당 키가 존재하지 않는 경우에만 전달받은 값을 추가함.
-			// -> Map에 해당 연령의 리스트가 없는 경우에만 새로운 리스트를 생성하여 추가
-			
-			//List<Toy> temp = toysByAge.get(age);
-			//temp.add(toy);
-			// -> 메서드 체이닝으로 한줄에 작성
-			toysByAge.get(age).add(toy);
-			// toysByAge.get(age) -> age(K)에 맞는 Value 반환 -> List
-			// List.add(toy) -> 전달된 toy 객체를 List에 추가
-			
-			
-		}
-		
-		/* toysByAge (Map) :  
-		 * { 
-		 * 		5 : ["키시미시", "허기워기"], 
-		 * 		8 : ["캣냅", "마미롱레그"] , 
-		 * 		12 : ["파피"] 
-		 * }
-		 * 
-		 * 
-		 *  toysByAge.entrySet() (Set) :
-		 *  
-		 *  [
-		 *  	{5 : ["키시미시", "허기워기"]},
-		 *  	{8 : ["캣냅", "마미롱레그"]},
-		 *  	{12 : ["파피"] }
-		 *  ]
-		 * 
-		 * 
-		*/
-		for( Entry<Integer, List<Toy>> entry : toysByAge.entrySet() ) {
-			
-			int age = entry.getKey(); // 해당 entry의 key(나이)를 얻어옴
-			List<Toy> toyList = entry.getValue();  // 해당 entry의 value(Toy객체가 들어있는 List)를 얻어옴
-			
-			System.out.println("[연령 : " + age + "세]");
-			
-			int index = 1;
-			for(Toy toy : toyList) { // 해당 연령에 대응되는 List를 순회하면서 출력
-				System.out.println(index + ". " + toy);
-				index++;
-			}
-			
-		}
-		
-		
+	    System.out.println("\n<연령별로 사용 가능한 장난감>");
+	    Map<Integer , List<Toy>> toysByAge = new HashMap<Integer, List<Toy>>();
+	    for(Toy toy : toySet) {
+	        int age = toy.getAge();
+	        toysByAge.putIfAbsent(age, new ArrayList<Toy>());
+	        toysByAge.get(age).add(toy);
+	    }
+	    for(Entry<Integer, List<Toy>> entry : toysByAge.entrySet()) {
+	        int age = entry.getKey();
+	        List<Toy> toyList = entry.getValue();
+	        System.out.println("[연령 : " + age + "세]");
+	        int index = 1;
+	        for(Toy toy : toyList) {
+	            System.out.println(index + ". " + toy);
+	            index++;
+	        }
+	    }
 	}
+
+
 	
 	
 	
