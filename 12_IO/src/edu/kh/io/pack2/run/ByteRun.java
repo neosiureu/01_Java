@@ -38,7 +38,7 @@ public class ByteRun {
 		//new ByteService().fileByteInput();
 		// new ByteService().bufferedFileByteInput();
 		// new ByteService().readProperties();
-		new ByteService().fileCopy();
+		new ByteService().bufferedFileByteOutput();
 
 		
 	}

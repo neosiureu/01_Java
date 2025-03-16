@@ -155,7 +155,7 @@ public class FileService {
 	
 	public void method3 () {
 		// 파일 클래스에서 제공하는 메서드 활용하기
-		File directory = new File("/workspace/01_Java/12_IO");
+		File directory = new File("/homeworkspace/a_Java/12_IO");
 		// 지정된 경로 내 모든 파일과 디렉토리를 파일 배열의 형태로 얻어오려 한다.
 		File[] files = directory.listFiles();
 		System.out.println(Arrays.toString(files));

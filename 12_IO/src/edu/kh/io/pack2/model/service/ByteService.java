@@ -77,9 +77,6 @@ IOException 관련 된 예외처리 구문을 반드시 작성해야 정상 종�
 			// 2바이트 범주의 문자 (영어와 기본 특수문자를 제외한 것)들은 바이트 스트림 통과 시 데이터 손실이 필히 발생하여
 			// 글자가 깨지는 문제가 발생
 			
-			
-			
-			
 			// 출력방법2: String을 byte[]변환 후 출력
 			
 			
@@ -92,22 +89,17 @@ IOException 관련 된 예외처리 구문을 반드시 작성해야 정상 종�
 			
 			//write이전 시각
 			
-			long startTime = System.nanoTime();
+			//long startTime = System.nanoTime();
 			
 			fos.write(content.getBytes()); //content는 StringBuilder에 썼던 것을 String형으로 변환한 것이었다.
 			
-			long endTime = System.nanoTime();
+			//long endTime = System.nanoTime();
 			
-			System.out.println(" 기반스트림인 fileByteOutput에 의한 파일 출력의 수행시간 "+ (endTime-startTime) + "나노 초 입니다." );
+			//System.out.println(" 기반스트림인 fileByteOutput에 의한 파일 출력의 수행시간 "+ (endTime-startTime) + "나노 초 입니다." );
 			
 			
 			//write이후 시각
-			
-			
-			
 			// 해당 String 내 모든 문자열을 byte[]의 배열로 만들어 반환해준다.
-			
-			
 			// for문 마무리 후에는 flush
 			
 			fos.flush(); // 스트링 안에 남아있는 모든 데이터를 밀어내는 과정
